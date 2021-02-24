@@ -42,3 +42,4 @@ cmake-build-release/
 .vscode/settings.json
 
 python/pybind11
+python/scripts/__pycache__/
