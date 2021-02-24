@@ -35,6 +35,8 @@ def main(config_file_path, vocab_file_path, camera_parameter_file_path):
     WINDOW_NAME = "OpenVSLAM Python Sample Code"
 
     slam.startup()
+
+    frame_viewer = slam.get_frame_publisher()
     cvui.init(WINDOW_NAME)
     while True:
         key = cv2.waitKey(10)
@@ -51,7 +53,10 @@ def main(config_file_path, vocab_file_path, camera_parameter_file_path):
             scaled_width = scaling(1920)
             scaled_height = scaling(1080)
             slam.feed_monocular_frame(gray_image, timestamp, mask)
-            see3cam_rgb_image_resized = cv2.resize(rgb_image, (scaled_width, scaled_height))
+
+            result = frame_viewer.draw_frame(True)
+            #see3cam_rgb_image_resized = cv2.resize(rgb_image, (scaled_width, scaled_height))
+            see3cam_rgb_image_resized = cv2.resize(result, (scaled_width, scaled_height))
             frame[:scaled_height, :scaled_width, :] = see3cam_rgb_image_resized
 
         if key == 27 or key == ord("q") or slam.terminate_is_requested():

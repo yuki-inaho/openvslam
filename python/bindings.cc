@@ -66,4 +66,7 @@ PYBIND11_MODULE(openvslam_python, m) {
         .def("get_current_cam_pose", &openvslam::publish::map_publisher::get_current_cam_pose)
         .def("get_keyframes", &openvslam::publish::map_publisher::get_keyframes_pybind, py::return_value_policy::reference_internal);
     // .def("get_landmarks", &openvslam::publish::map_publisher::get_landmarks, py::arg("all_landmarks"), py::arg("local_landmarks"));
+
+    py::class_<openvslam::publish::frame_publisher, std::shared_ptr<openvslam::publish::frame_publisher>>(m, "frame_publisher")
+        .def("draw_frame", &openvslam::publish::frame_publisher::draw_frame, py::arg("draw_text"), py::return_value_policy::reference_internal);
 }

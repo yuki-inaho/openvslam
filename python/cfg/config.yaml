@@ -1,29 +1,26 @@
-# Equirectangular model for RICOH THETA S
 
 #==============#
 # Camera Model #
 #==============#
 
-Camera.device: "/dev/v4l/by-id/usb-e-con_Systems_See3CAM_CU20_180B0204-video-index0"
-Camera.name: "S3C"
+Camera.name: "TUM RGBD monocular 01"
 Camera.setup: "monocular"
 Camera.model: "perspective"
-
-Camera.fps: 30.0
-Camera.cols: 1920
-Camera.rows: 1080
 
 Camera.fx: 907.491014
 Camera.fy: 911.998511
 Camera.cx: 920.941178
 Camera.cy: 543.722086
 
-# Undistortion Process will be done out of OpenVSLAM
 Camera.k1: 0.0000000
 Camera.k2: 0.0000000
 Camera.p1: 0.0000000
 Camera.p2: 0.0000000
 Camera.k3: 0.0000000
+
+Camera.fps: 30.0
+Camera.cols: 1920
+Camera.rows: 1080
 
 Camera.color_order: "RGB"
 
@@ -31,13 +28,9 @@ Camera.color_order: "RGB"
 # ORB Parameters #
 #================#
 
-Feature.max_num_keypoints: 2000
+Feature.max_num_keypoints: 1000
 Feature.scale_factor: 1.2
 Feature.num_levels: 8
 Feature.ini_fast_threshold: 20
 Feature.min_fast_threshold: 7
-Feature.mask_rectangles:
-  - [0.0, 1.0, 0.0, 0.1]
-  - [0.0, 1.0, 0.84, 1.0]
-  - [0.0, 0.2, 0.7, 1.0]
-  - [0.8, 1.0, 0.7, 1.0]
+
