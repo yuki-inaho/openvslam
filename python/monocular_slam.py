@@ -58,7 +58,10 @@ def main(config_file_path, vocab_file_path, camera_parameter_file_path):
             result = frame_publisher.draw_frame(True)
             #see3cam_rgb_image_resized = cv2.resize(rgb_image, (scaled_width, scaled_height))
             see3cam_rgb_image_resized = cv2.resize(result, (scaled_width, scaled_height))
-            print(map_publisher.get_global_landmarks())
+            landmarks_obj_list = map_publisher.get_global_landmarks()
+            landmarks_global = [landmark.get_pos_in_world() for landmark in landmarks_obj_list]
+
+            print(frame_publisher.get_tracker_status_as_str())
             frame[:scaled_height, :scaled_width, :] = see3cam_rgb_image_resized
 
         if key == 27 or key == ord("q") or slam.terminate_is_requested():

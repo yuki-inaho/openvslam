@@ -88,6 +88,30 @@ cv::Mat frame_publisher::draw_frame(const bool draw_text) {
     return img;
 }
 
+std::string frame_publisher::get_tracker_status_as_str(){
+    std::lock_guard<std::mutex> lock(mtx_);
+    std::string tracker_state_str;
+    switch (tracking_state_) {
+        case tracker_state_t::NotInitialized: {
+            tracker_state_str = "NotInitialized";
+            break;
+        }
+        case tracker_state_t::Initializing: {
+            tracker_state_str = "Initializing";
+            break;
+        }
+        case tracker_state_t::Tracking: {
+            tracker_state_str = "Tracking";
+            break;
+        }
+        case tracker_state_t::Lost: {
+            tracker_state_str = "Lost";
+            break;
+        }
+    }
+    return tracker_state_str;
+}
+
 unsigned int frame_publisher::draw_initial_points(cv::Mat& img, const std::vector<cv::KeyPoint>& init_keypts,
                                                   const std::vector<int>& init_matches, const std::vector<cv::KeyPoint>& curr_keypts,
                                                   const float mag) const {

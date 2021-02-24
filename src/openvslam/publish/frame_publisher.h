@@ -44,6 +44,11 @@ public:
      */
     cv::Mat draw_frame(const bool draw_text = true);
 
+    /**
+     * Get the current tracking_module status as string format
+     */
+    std::string get_tracker_status_as_str();
+
 protected:
     unsigned int draw_initial_points(cv::Mat& img, const std::vector<cv::KeyPoint>& init_keypts,
                                      const std::vector<int>& init_matches, const std::vector<cv::KeyPoint>& curr_keypts,

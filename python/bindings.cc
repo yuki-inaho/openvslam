@@ -71,5 +71,6 @@ PYBIND11_MODULE(openvslam_python, m) {
         .def("get_local_landmarks", &openvslam::publish::map_publisher::get_local_landmarks_pybind, py::return_value_policy::reference_internal);
 
     py::class_<openvslam::publish::frame_publisher, std::shared_ptr<openvslam::publish::frame_publisher>>(m, "frame_publisher")
-        .def("draw_frame", &openvslam::publish::frame_publisher::draw_frame, py::arg("draw_text"), py::return_value_policy::reference_internal);
+        .def("draw_frame", &openvslam::publish::frame_publisher::draw_frame, py::arg("draw_text"), py::return_value_policy::reference_internal)
+        .def("get_tracker_status_as_str", &openvslam::publish::frame_publisher::get_tracker_status_as_str);
 }
