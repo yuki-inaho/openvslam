@@ -1,5 +1,9 @@
 import sys
-sys.path.append('../build/python/')
+from pathlib import Path
+
+LIBRARY_PATH = str(Path(__file__).resolve().parent.joinpath("build/python"))
+sys.path.append(LIBRARY_PATH)
+
 import openvslam_python
 
 config = openvslam_python.config(config_file_path="./config.yaml")
