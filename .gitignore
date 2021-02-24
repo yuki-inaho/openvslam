@@ -40,3 +40,5 @@ cmake-build-release/
 *.out
 *.app
 .vscode/settings.json
+
+python/pybind11
