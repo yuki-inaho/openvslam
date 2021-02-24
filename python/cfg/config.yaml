@@ -18,11 +18,12 @@ Camera.fy: 911.998511
 Camera.cx: 920.941178
 Camera.cy: 543.722086
 
-Camera.k1: 0.0547019
-Camera.k2: 0.0110752
+# Undistortion Process will be done out of OpenVSLAM
+Camera.k1: 0.0000000
+Camera.k2: 0.0000000
 Camera.p1: 0.0000000
 Camera.p2: 0.0000000
-Camera.k3: 0.0031703
+Camera.k3: 0.0000000
 
 Camera.color_order: "RGB"
 
