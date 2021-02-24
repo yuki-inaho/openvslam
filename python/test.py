@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-LIBRARY_PATH = str(Path(__file__).resolve().parent.joinpath("build/python"))
+LIBRARY_PATH = str(Path(__file__).resolve().parent.parent.joinpath("build/python"))
 sys.path.append(LIBRARY_PATH)
 
 import openvslam_python
