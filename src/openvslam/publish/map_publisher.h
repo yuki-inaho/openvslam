@@ -69,6 +69,11 @@ public:
     unsigned int get_landmarks(std::vector<data::landmark*>& all_landmarks,
                                std::set<data::landmark*>& local_landmarks);
 
+    // TODO: write description
+    std::vector<data::landmark*> get_global_landmarks_pybind();
+    std::set<data::landmark*> get_local_landmarks_pybind();
+
+
 private:
     //! config
     std::shared_ptr<config> cfg_;

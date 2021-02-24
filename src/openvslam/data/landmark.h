@@ -102,6 +102,9 @@ public:
     //! encode landmark information as JSON
     nlohmann::json to_json() const;
 
+    //! encode landmark information as JSON string
+    std::string to_json_string() const;
+
 public:
     unsigned int id_;
     static std::atomic<unsigned int> next_id_;

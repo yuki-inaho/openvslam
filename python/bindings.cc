@@ -2,6 +2,7 @@
 #include "openvslam/config.h"
 #include "openvslam/publish/frame_publisher.h"
 #include "openvslam/publish/map_publisher.h"
+#include "openvslam/data/landmark.h"
 #include "ndarray_converter.h"
 #include "openvslam/type.h"
 
@@ -21,8 +22,9 @@ PYBIND11_MODULE(openvslam_python, m) {
         .def(py::init<const std::string&>(), py::arg("config_file_path"))
         .def(py::init<const YAML::Node&, const std::string&>(), py::arg("yaml_node"), py::arg("config_file_path") = "");
 
-    // py::class_<openvslam::data::landmark>(m, "landmark")
-    // 	.def();
+    py::class_<openvslam::data::landmark>(m, "landmark")
+        .def("to_json", &openvslam::data::landmark::to_json_string)
+        .def("get_pos_in_world", &openvslam::data::landmark::get_pos_in_world);
 
     // py::class_<openvslam::data::map_database>(m, "map_database")
     // .def();
@@ -64,8 +66,9 @@ PYBIND11_MODULE(openvslam_python, m) {
         // .def(py::init<const std::shared_ptr<openvslam::config>&, openvslam::data::map_database*>(), py::arg("cfg"), py::arg("map_db"))
         .def("set_current_cam_pose", &openvslam::publish::map_publisher::set_current_cam_pose, py::arg("cam_pose_cw"))
         .def("get_current_cam_pose", &openvslam::publish::map_publisher::get_current_cam_pose)
-        .def("get_keyframes", &openvslam::publish::map_publisher::get_keyframes_pybind, py::return_value_policy::reference_internal);
-    // .def("get_landmarks", &openvslam::publish::map_publisher::get_landmarks, py::arg("all_landmarks"), py::arg("local_landmarks"));
+        .def("get_keyframes", &openvslam::publish::map_publisher::get_keyframes_pybind, py::return_value_policy::reference_internal)
+        .def("get_global_landmarks", &openvslam::publish::map_publisher::get_global_landmarks_pybind, py::return_value_policy::reference_internal)
+        .def("get_local_landmarks", &openvslam::publish::map_publisher::get_local_landmarks_pybind, py::return_value_policy::reference_internal);
 
     py::class_<openvslam::publish::frame_publisher, std::shared_ptr<openvslam::publish::frame_publisher>>(m, "frame_publisher")
         .def("draw_frame", &openvslam::publish::frame_publisher::draw_frame, py::arg("draw_text"), py::return_value_policy::reference_internal);

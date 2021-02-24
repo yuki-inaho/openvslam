@@ -363,5 +363,9 @@ nlohmann::json landmark::to_json() const {
             {"n_fnd", num_observed_}};
 }
 
+std::string landmark::to_json_string() const {
+    return landmark::to_json().dump();
+}
+
 } // namespace data
 } // namespace openvslam

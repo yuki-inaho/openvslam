@@ -36,7 +36,8 @@ def main(config_file_path, vocab_file_path, camera_parameter_file_path):
 
     slam.startup()
 
-    frame_viewer = slam.get_frame_publisher()
+    frame_publisher = slam.get_frame_publisher()
+    map_publisher = slam.get_map_publisher()
     cvui.init(WINDOW_NAME)
     while True:
         key = cv2.waitKey(10)
@@ -54,9 +55,10 @@ def main(config_file_path, vocab_file_path, camera_parameter_file_path):
             scaled_height = scaling(1080)
             slam.feed_monocular_frame(gray_image, timestamp, mask)
 
-            result = frame_viewer.draw_frame(True)
+            result = frame_publisher.draw_frame(True)
             #see3cam_rgb_image_resized = cv2.resize(rgb_image, (scaled_width, scaled_height))
             see3cam_rgb_image_resized = cv2.resize(result, (scaled_width, scaled_height))
+            print(map_publisher.get_global_landmarks())
             frame[:scaled_height, :scaled_width, :] = see3cam_rgb_image_resized
 
         if key == 27 or key == ord("q") or slam.terminate_is_requested():

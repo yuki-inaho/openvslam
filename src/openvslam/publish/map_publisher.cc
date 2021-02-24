@@ -36,6 +36,15 @@ std::vector<data::keyframe*> map_publisher::get_keyframes_pybind() {
     return map_db_->get_all_keyframes();
 }
 
+std::vector<data::landmark*> map_publisher::get_global_landmarks_pybind(){
+    return map_db_->get_all_landmarks();
+}
+
+std::set<data::landmark*> map_publisher::get_local_landmarks_pybind(){
+    const auto _local_landmarks = map_db_->get_local_landmarks();
+    return std::set<data::landmark*>(_local_landmarks.begin(), _local_landmarks.end());
+}
+
 unsigned int map_publisher::get_landmarks(std::vector<data::landmark*>& all_landmarks,
                                           std::set<data::landmark*>& local_landmarks) {
     all_landmarks = map_db_->get_all_landmarks();
